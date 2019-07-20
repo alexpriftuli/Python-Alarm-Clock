@@ -1,10 +1,11 @@
 
 """Simple Python script to set an alarm for a specific time.
-   When the alarm goes off, open a notification popup with the text provided
+   When the alarm goes off, open a notification popup with the text provided in the arguments
 """
 
 import datetime
 import time
+import sys
 import subprocess
 
 def check_alarm_input(alarm_time):
@@ -29,9 +30,9 @@ def sendmessage(message):
     return
 
 # Get user input for the alarm time
-print("Set a time for the alarm (Ex. 06:30 or 18:30:00)")
+
 while True:
-    alarm_input = input(">> ")
+    alarm_input = sys.argv[1]
     try:
         alarm_time = [int(n) for n in alarm_input.split(":")]
         if check_alarm_input(alarm_time):
@@ -42,7 +43,7 @@ while True:
         print("ERROR: Enter time in HH:MM or HH:MM:SS format")
 
 #get text from input
-notification_text = input("notification text: ")
+notification_text = sys.argv[2]
 
 # Convert the alarm time from [H:M] or [H:M:S] to seconds
 seconds_hms = [3600, 60, 1] # Number of seconds in an Hour, Minute, and Second
@@ -64,8 +65,5 @@ print("Alarm set to go off in %s" % datetime.timedelta(seconds=time_diff_seconds
 
 # Sleep until the alarm goes off
 time.sleep(time_diff_seconds)
-
-# Time for the alarm to go off
-print("Wake Up!")
 
 sendmessage(notification_text)
