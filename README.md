@@ -4,4 +4,4 @@ It opens a notification popup after the time goes off with a text provided in th
 
 ### Usage
 With Python 3 installed, simply type `python3 alarm_clock.py` to run the script.
-
+It will request you to write the time and the text to display.
